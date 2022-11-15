@@ -1,0 +1,19 @@
+<ul>
+  <% @tasks.each do |task| %>
+    <%if task.completed == true%>
+      <%= link_to "✅",
+      task_path(task),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <%else%>
+      <%= link_to "🟨",
+      task_path(task),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <%end%>
+    <li><%= link_to task.title, task_path(task) %></li>
+    <%= link_to "🗑",
+    task_path(task),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%end%>
+</ul>
+
+<%= link_to "Add a new Task", new_task_path %>
